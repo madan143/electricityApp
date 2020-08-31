@@ -1,16 +1,27 @@
-/*-- main --*/
-.wrap {
-  margin: 0;
-  position: absolute;
-  top: 90%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+.container{
+  margin: auto;
+	width: 70%;
 }
 
 /*-- Profile-form --*/
 .top-grids {
-  background: #1752aa;
+  background: linear-gradient(45deg, #56ab2f, #a8e063);
+}
+
+.input-group>.input-group-prepend {
+  flex: 0 0 40%;
+}
+.input-group .input-group-text {
+  width: 100%;
+}
+
+.text-danger {
+  color: #ff0000!important;
+  font-weight: 300;
+}
+
+.input-group-text {
+  font-weight: 600;
 }
 
 .w3l-main h3, .w3l-main-2 h3, .form h3{
@@ -24,6 +35,7 @@
 }
 
 .w3l-main-2 input[type="reset"], .w3l-main-2 input[type="submit"] {
+  border-radius: 2px;
   padding: 2% 2%;
   border: none;
   outline: none;
@@ -39,7 +51,7 @@
   -moz-transition: 0.5s all;
   -o-transition: 0.5s all;
   -ms-transition: 0.5s all;
-  font-family: 'Roboto', sans-serif;
+  font-family: Poppins-Bold;
 }
 .w3l-main-2 input[type="reset"]:hover, .w3l-main-2 input[type="submit"]:hover {
   background: #000;
@@ -56,16 +68,13 @@ transition: 0.5s all;
   margin: 7.8% auto;
 }
 .w3l-main-2 select,.w3l-main-2 input[type="text"],.w3l-main-2 input[type="number"], .w3l-main-2 input[type="password"], .w3l-main-2 input[type="email"] {
-  width: 100%;
-  padding: 3% 1.5%;
   border: none;
   outline: none;
   font-size: 1em;
-  margin-bottom: 7.2%;
   color: #000;
-  font-family: 'Roboto', sans-serif;
+  font-family: Poppins-Bold;
 }
 .w3l-main-2 input[type="submit"]{
 margin:7% 0em 1.4%;
-font-family: 'Roboto', sans-serif;
+font-family: Poppins-Bold;
 }

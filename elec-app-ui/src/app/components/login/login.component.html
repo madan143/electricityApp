@@ -4,28 +4,35 @@
     <div class="top-grids">
       <div class="w3l-main-2">
          <h3>Login Form</h3>
-           <form (ngSubmit)="validateUser(loginForm)" #loginForm="ngForm">
+           <form (ngSubmit)="loginForm.valid && validateUser(loginForm)" #loginForm="ngForm">
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">User Name*</span>
                 </div>
                 <input type="text" class="form-control" aria-label="Username"  id="username" name="username"
-                  aria-describedby="basic-addon1" required [(ngModel)]="model.username" #username="ngModel">
+                  aria-describedby="basic-addon1" required [(ngModel)]="model.username" #username="ngModel"
+                  minlength="5" maxlength="20">
               </div>
               <span class="text-danger" *ngIf="(username.touched || loginForm.submitted) &&
                     username.errors?.required">Error : User Name is required !</span>
+              <span class="text-danger" *ngIf="(username.touched || loginForm.submitted) &&
+                    username.errors?.minlength">Error : User Name  must be at least 5 characters long. !</span>
             </div>
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">Password*</span>
                 </div>
-                <input type="password" class="form-control" aria-label="Password"  id="password" name="password"
+                <input type="password" class="form-control" aria-label="Password"  id="password"
+                  name="password" minlength="5" maxlength="20"
                   aria-describedby="basic-addon1" required [(ngModel)]="model.password" #password="ngModel">
               </div>
               <span class="text-danger" *ngIf="(password.touched || loginForm.submitted) &&
               password.errors?.required">Error : Password is required !</span>
+              <span class="text-danger" *ngIf="(password.touched || loginForm.submitted) &&
+                (password.errors?.minlength)">
+                  Error : Password  must be at least 5 characters long. !</span>
             </div>
             <input type="submit" value="Login">
             <input type="reset" value="Cancel">

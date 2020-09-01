@@ -1,0 +1,119 @@
+<div class="container pt-3 my-3" >
+  <!-- Complaint-form -->
+  <div class="top-grids">
+    <div class="w3l-main-2">
+       <h3>Complaint Registration</h3>
+         <form (ngSubmit)="complaintForm.valid && submitNewComplaint(complaintForm)"
+                #complaintForm="ngForm">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Unique Service Number*</span>
+              </div>
+              <input type="text" class="form-control" aria-label="UniqueServNum"  id="uniqueServNum"
+                name="uniqueServNum" aria-describedby="basic-addon1" required  minlength="8"
+                maxlength="8" [(ngModel)]="model.uniqueServNum" #uniqueServNum="ngModel">
+            </div>
+            <span class="text-danger" *ngIf="(uniqueServNum.touched || complaintForm.submitted) &&
+            uniqueServNum.errors?.required">Error : Unique Service Number is required !</span>
+            <span class="text-danger" *ngIf="(uniqueServNum.touched || complaintForm.submitted) &&
+            (uniqueServNum.errors?.minlength || uniqueServNum.errors?.maxlength)">
+              Error : Unique Service Number  must be 8 digit number. !</span>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Category Of Issue*</span>
+              </div>
+              <select class="form-control" required id="issueCategory" name="issueCategory"
+                [(ngModel)]="model.issueCategory" #issueCategory="ngModel">
+                  <option value="Payment Issue">Payment Issue</option>
+                  <option value="Account Details Issue">Account Details Issue</option>
+                  <option value="Incorrect Bill">Incorrect Bill</option>
+                </select>
+            </div>
+            <span class="text-danger" *ngIf="(issueCategory.touched || complaintForm.submitted) &&
+            issueCategory.errors?.required">Error : Category Of Issue is required !</span>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Sub Category Of Issue*</span>
+              </div>
+              <select class="form-control" required id="issueSubCategory" name="issueSubCategory"
+                [(ngModel)]="model.issueSubCategory" #issueSubCategory="ngModel">
+                  <option value="Transaction Failure">Transaction Failure</option>
+                  <option value="Payment not reflecting">Payment not reflecting</option>
+                  <option value="Name is not correct">Name is not correct</option>
+                  <option value="Address is not correct">Address is not correct</option>
+                  <option value="Bill Amount is not correct">Bill Amount is not correct</option>
+                </select>
+            </div>
+            <span class="text-danger" *ngIf="(issueSubCategory.touched || complaintForm.submitted) &&
+            issueSubCategory.errors?.required">Error : Sub Category Of Issue is required !</span>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Name of the Complainer*</span>
+              </div>
+              <input type="text" class="form-control" aria-label="CustomerName"  id="customerName"
+                name="customerName" aria-describedby="basic-addon1" minlength="4" maxlength="30"
+                required [(ngModel)]="model.customerName" #customerName="ngModel">
+            </div>
+            <span class="text-danger" *ngIf="(customerName.touched || complaintForm.submitted) &&
+                  customerName.errors?.required">Error : Complainer Name is required !</span>
+            <span class="text-danger" *ngIf="(customerName.touched || complaintForm.submitted) &&
+            customerName.errors?.minlength">Error : Complainer Name  must be at least 4 characters long. !</span>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Email Id*</span>
+              </div>
+              <input type="email" class="form-control" aria-label="Email"  id="email"
+                pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                name="email" aria-describedby="basic-addon1"
+                required [(ngModel)]="model.email" #email="ngModel">
+            </div>
+            <span class="text-danger" *ngIf="(email.touched || complaintForm.submitted) &&
+                email.errors?.required">Error : Email address is required !</span>
+            <span class="text-danger" *ngIf="(email.touched || complaintForm.submitted) &&
+               email.errors?.pattern">Error : Please provide a valid email address !</span>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Mobile Number*</span>
+              </div>
+              <input type="text" class="form-control" aria-label="MobileNumber"  id="mobileNumber"
+                name="mobileNumber" aria-describedby="basic-addon1" minlength='10' maxlength='10'
+                required [(ngModel)]="model.mobileNumber" #mobileNumber="ngModel">
+            </div>
+            <span class="text-danger" *ngIf="(mobileNumber.touched || complaintForm.submitted) &&
+                mobileNumber.errors?.required">Error : Mobile Number is required !</span>
+            <span class="text-danger" *ngIf="(mobileNumber.touched || complaintForm.submitted) &&
+            (mobileNumber.errors?.minlength || mobileNumber.errors?.maxlength)">
+              Error : Mobile Number  must be 10 digit number. !</span>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Upload Doc*</span>
+              </div>
+              <input type="file" class="form-control" aria-label="UploadDoc"  id="uploadDoc"
+                name="uploadDoc" aria-describedby="basic-addon1" required accept="image/gif, image/jpeg"
+                [(ngModel)]="model.uploadDoc" #uploadDoc="ngModel">
+            </div>
+            <span class="text-danger" *ngIf="(complaintForm.submitted) &&
+            uploadDoc.errors?.required">Error : Upload Doc is required !</span>
+          </div>
+          <input type="submit" value="Submit">
+          <input type="reset" value="Cancel">
+        </form>
+    </div>
+  <div class="clear"></div>
+  <!-- //Complaint-form -->
+</div>
+

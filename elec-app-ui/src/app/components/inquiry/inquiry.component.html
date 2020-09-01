@@ -1,0 +1,140 @@
+<div class="container pt-3 my-3" >
+  <!-- Bill Inquiry form -->
+  <div class="top-grids">
+    <div class="w3l-main-2">
+       <h3>Online Bill Enquiry</h3>
+         <form (ngSubmit)="onlineBillForm.valid && loadBillDetails(onlineBillForm)"
+                #onlineBillForm="ngForm">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Unique Service Number*</span>
+              </div>
+              <input type="text" class="form-control" aria-label="UniqueServNum"  id="uniqueServNum"
+                name="uniqueServNum" aria-describedby="basic-addon1" required  minlength="8"
+                maxlength="8" [(ngModel)]="model.uniqueServNum" #uniqueServNum="ngModel">
+            </div>
+            <span class="text-danger" *ngIf="(uniqueServNum.touched || onlineBillForm.submitted) &&
+            uniqueServNum.errors?.required">Error : Unique Service Number is required !</span>
+            <span class="text-danger" *ngIf="(uniqueServNum.touched || onlineBillForm.submitted) &&
+            (uniqueServNum.errors?.minlength || uniqueServNum.errors?.maxlength)">
+              Error : Unique Service Number  must be 8 digit number. !</span>
+          </div>
+          <input type="submit" value="Submit">
+          <input type="reset" value="Cancel">
+        </form>
+    </div>
+  <!-- //Bill Inquiry form -->
+  <div class="container-sm pt-3 my-3" >
+    <!-- Bill Inquiry form -->
+    <div class="top-grids">
+      <div class="w3l-main-3">
+         <h3>Current Month Bill Details</h3>
+           <form (ngSubmit)="onlineBillForm.valid && loadBillDetails(onlineBillForm)"
+                  #onlineBillForm="ngForm">
+                  <div class="form-row align-items-center">
+                    <div class="col-auto my-1 input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Consumer Name</span>
+                        <input type="text" class="form-control" id="consumerName" name="consumerName"
+                            [(ngModel)]="model.consumerName" #consumerName="ngModel">
+                      </div>
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Unique Service No.</span>
+                        <input type="text" class="form-control" id="uniqueServNum" name="uniqueServNum"
+                            [(ngModel)]="model.uniqueServNum" #uniqueServNum="ngModel">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row align-items-center">
+                    <div class="col-auto my-1 input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Service Number</span>
+                        <input type="text" class="form-control" id="serviceNumber" name="serviceNumber"
+                            [(ngModel)]="model.serviceNumber" #serviceNumber="ngModel">
+                      </div>
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">ERO Name</span>
+                        <input type="text" class="form-control" id="eroName" name="eroName"
+                            [(ngModel)]="model.eroName" #eroName="ngModel">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row align-items-center">
+                    <div class="col-auto my-1 input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Address</span>
+                        <input type="text" class="form-control" id="address" name="address"
+                            [(ngModel)]="model.address" #address="ngModel">
+                      </div>
+                    </div>
+                  </div>
+            <h5 class="secheading">Current Month Bill</h5>
+            <div class="form-row align-items-center">
+              <div class="col-auto my-1 input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Date</span>
+                  <input type="text" class="form-control" id="currentMnthBillDt" name="currentMnthBillDt"
+                      [(ngModel)]="model.currentMnthBillDt" #currentMnthBillDt="ngModel">
+                </div>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Amount</span>
+                  <input type="text" class="form-control" id="currentMnthBillAmt" name="currentMnthBillAmt"
+                      [(ngModel)]="model.currentMnthBillAmt" #currentMnthBillAmt="ngModel">
+                </div>
+              </div>
+            </div>
+            <h5 class="secheading">Your arrears as on</h5>
+            <div class="form-row align-items-center">
+              <div class="col-auto my-1 input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Date</span>
+                  <input type="text" class="form-control" id="arrearMnthBillDt" name="arrearMnthBillDt"
+                      [(ngModel)]="model.arrearMnthBillDt" #arrearMnthBillDt="ngModel">
+                </div>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Amount</span>
+                  <input type="text" class="form-control" id="arrearMnthBillAmt" name="arrearMnthBillAmt"
+                      [(ngModel)]="model.arrearMnthBillAmt" #arrearMnthBillAmt="ngModel">
+                </div>
+              </div>
+            </div>
+            <h5 class="secheading">Total Amount</h5>
+            <div class="form-row align-items-center">
+              <div class="col-auto my-1 input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Due Date</span>
+                  <input type="text" class="form-control" id="dueDt" name="dueDt"
+                      [(ngModel)]="model.dueDt" #dueDt="ngModel">
+                </div>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Amount</span>
+                  <input type="text" class="form-control" id="totalAmt" name="totalAmt"
+                      [(ngModel)]="model.totalAmt" #totalAmt="ngModel">
+                </div>
+              </div>
+            </div>
+            <h5 class="secheading">Payment Details</h5>
+            <div class="form-row align-items-center">
+              <div class="col-auto my-1 input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Last Month Paid Date</span>
+                  <input type="text" class="form-control" id="lastMnthBillDt" name="lastMnthBillDt"
+                      [(ngModel)]="model.lastMnthBillDt" #lastMnthBillDt="ngModel">
+                </div>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Amount Paid for Last Month</span>
+                  <input type="text" class="form-control" id="lastMnthBillAmt" name="lastMnthBillAmt"
+                      [(ngModel)]="model.lastMnthBillAmt" #lastMnthBillAmt="ngModel">
+                </div>
+              </div>
+            </div>
+            <input type="submit" value="Proceed to Pay">
+            <input type="reset" value="Cancel">
+          </form>
+      </div>
+    <div class="clear"></div>
+    <!-- //Bill Inquiry form -->
+  </div>
+</div>
+

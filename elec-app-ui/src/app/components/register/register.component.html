@@ -3,17 +3,21 @@
 			<div class="top-grids">
 				<div class="w3l-main-2">
 				   <h3>Registration Form</h3>
-					   <form (ngSubmit)="createNewUser(registerationForm)" #registerationForm="ngForm">
+             <form (ngSubmit)="registerationForm.valid && createNewUser(registerationForm)"
+                    #registerationForm="ngForm">
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">User Name*</span>
                   </div>
-                  <input type="text" class="form-control" aria-label="Username"  id="username" name="username"
-                    aria-describedby="basic-addon1" required [(ngModel)]="model.username" #username="ngModel">
+                  <input type="text" class="form-control" aria-label="Username"  id="username"
+                    name="username" aria-describedby="basic-addon1" required  minlength="5"
+                    maxlength="20" [(ngModel)]="model.username" #username="ngModel">
                 </div>
                 <span class="text-danger" *ngIf="(username.touched || registerationForm.submitted) &&
                       username.errors?.required">Error : User Name is required !</span>
+                <span class="text-danger" *ngIf="(username.touched || registerationForm.submitted) &&
+                      username.errors?.minlength">Error : User Name  must be at least 5 characters long. !</span>
               </div>
               <div class="form-group">
                 <div class="input-group">
@@ -21,23 +25,28 @@
                     <span class="input-group-text" id="basic-addon1">Name*</span>
                   </div>
                   <input type="text" class="form-control" aria-label="CustomerName"  id="customerName"
-                    name="customerName" aria-describedby="basic-addon1"
+                    name="customerName" aria-describedby="basic-addon1" minlength="4" maxlength="30"
                     required [(ngModel)]="model.customerName" #customerName="ngModel">
                 </div>
                 <span class="text-danger" *ngIf="(customerName.touched || registerationForm.submitted) &&
                       customerName.errors?.required">Error : Name is required !</span>
+                <span class="text-danger" *ngIf="(customerName.touched || registerationForm.submitted) &&
+                customerName.errors?.minlength">Error : Name  must be at least 4 characters long. !</span>
               </div>
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Mobile Number*</span>
                   </div>
-                  <input type="number" class="form-control" aria-label="MobileNumber"  id="mobileNumber"
-                    name="mobileNumber" aria-describedby="basic-addon1"
+                  <input type="text" class="form-control" aria-label="MobileNumber"  id="mobileNumber"
+                    name="mobileNumber" aria-describedby="basic-addon1" minlength='10' maxlength='10'
                     required [(ngModel)]="model.mobileNumber" #mobileNumber="ngModel">
                 </div>
                 <span class="text-danger" *ngIf="(mobileNumber.touched || registerationForm.submitted) &&
                     mobileNumber.errors?.required">Error : Mobile Number is required !</span>
+                <span class="text-danger" *ngIf="(mobileNumber.touched || registerationForm.submitted) &&
+                (mobileNumber.errors?.minlength || mobileNumber.errors?.maxlength)">
+                  Error : Mobile Number  must be 10 digit number. !</span>
               </div>
               <div class="form-group">
                 <div class="input-group">
@@ -45,11 +54,14 @@
                     <span class="input-group-text" id="basic-addon1">Email address*</span>
                   </div>
                   <input type="email" class="form-control" aria-label="Email"  id="email"
+                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                     name="email" aria-describedby="basic-addon1"
                     required [(ngModel)]="model.email" #email="ngModel">
                 </div>
                 <span class="text-danger" *ngIf="(email.touched || registerationForm.submitted) &&
                     email.errors?.required">Error : Email address is required !</span>
+                <span class="text-danger" *ngIf="(email.touched || registerationForm.submitted) &&
+                   email.errors?.pattern">Error : Please provide a valid email address !</span>
               </div>
               <div class="form-group">
                 <div class="input-group">
@@ -57,11 +69,16 @@
                     <span class="input-group-text" id="basic-addon1">Confirm Email address*</span>
                   </div>
                   <input type="email" class="form-control" aria-label="ConfirmEmail"  id="confirmEmail"
+                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                     name="confirmEmail" aria-describedby="basic-addon1"
                     required [(ngModel)]="model.confirmEmail" #confirmEmail="ngModel">
                 </div>
                 <span class="text-danger" *ngIf="(confirmEmail.touched || registerationForm.submitted) &&
                 confirmEmail.errors?.required">Error : Confirm Email address is required !</span>
+                <span class="text-danger" *ngIf="(confirmEmail.touched || registerationForm.submitted) &&
+                confirmEmail.errors?.pattern">Error : Please provide a valid email address !</span>
+                <span class="text-danger" *ngIf="(confirmEmail.touched || registerationForm.submitted) &&
+                (!confirmEmail.errors?.required && !confirmEmail.errors?.pattern && confirmEmail.value!=email.value)">Error : Email & Confirm Email should be same !</span>
               </div>
               <div class="form-group">
                 <div class="input-group">
@@ -69,11 +86,14 @@
                     <span class="input-group-text" id="basic-addon1">Address*</span>
                   </div>
                   <input type="text" class="form-control" aria-label="Address"  id="address"
-                    name="address" aria-describedby="basic-addon1"
+                    name="address" aria-describedby="basic-addon1" minlength="10" maxlength="100"
                     required [(ngModel)]="model.address" #address="ngModel">
                 </div>
                 <span class="text-danger" *ngIf="(address.touched || registerationForm.submitted) &&
                 address.errors?.required">Error : Address is required !</span>
+                <span class="text-danger" *ngIf="(address.touched || registerationForm.submitted) &&
+                (address.errors?.minlength)">
+                Error : Address  must be at least 10 characters long. !</span>
               </div>
               <div class="form-group">
                 <div class="input-group">
@@ -81,11 +101,14 @@
                     <span class="input-group-text" id="basic-addon1">Enter Password*</span>
                   </div>
                   <input type="password" class="form-control" aria-label="Password"  id="password"
-                    name="password" aria-describedby="basic-addon1"
+                    name="password" aria-describedby="basic-addon1" minlength="5" maxlength="20"
                     required [(ngModel)]="model.password" #password="ngModel">
                 </div>
                 <span class="text-danger" *ngIf="(password.touched || registerationForm.submitted) &&
                 password.errors?.required">Error : Password is required !</span>
+                <span class="text-danger" *ngIf="(password.touched || registerationForm.submitted) &&
+                (password.errors?.minlength)">
+                  Error : Password  must be at least 5 characters long. !</span>
               </div>
               <div class="form-group">
                 <div class="input-group">
@@ -93,19 +116,24 @@
                     <span class="input-group-text" id="basic-addon1">Confirm Password*</span>
                   </div>
                   <input type="password" class="form-control" aria-label="ConfirmPassword"  id="confirmPassword"
-                    name="confirmPassword" aria-describedby="basic-addon1"
+                    name="confirmPassword" aria-describedby="basic-addon1" minlength="5" maxlength="20"
                     required [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel">
                 </div>
                 <span class="text-danger" *ngIf="(confirmPassword.touched || registerationForm.submitted) &&
                 confirmPassword.errors?.required">Error : Confirm Password is required !</span>
+                <span class="text-danger" *ngIf="(confirmPassword.touched || registerationForm.submitted) &&
+                (confirmPassword.errors?.minlength)">Error : Confirm Password  must be at least 5 characters long. !</span>
+                <span class="text-danger" *ngIf="(confirmPassword.touched || registerationForm.submitted) &&
+                (!confirmPassword.errors?.required && !confirmPassword.errors?.minlength && confirmPassword.value!=password.value)">Error : Password & Confirm Password should be same !</span>
               </div>
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Hint Question*</span>
                   </div>
-                  <select class="form-control" required id="hintQuestion" name="hintQuestion"
+                  <select class="custom-select" required id="hintQuestion" name="hintQuestion"
                     [(ngModel)]="model.hintQuestion" #hintQuestion="ngModel">
+                      <option value="">Select Question</option>
                       <option value="Birth">Your Birth Place?</option>
                       <option value="Company">Your first company?</option>
                       <option value="Color">Your favourite color?</option>
@@ -121,11 +149,13 @@
                     <span class="input-group-text" id="basic-addon1">Hint Answer*</span>
                   </div>
                   <input type="text" class="form-control" aria-label="HintAnswer"  id="hintAnswer"
-                    name="hintAnswer" aria-describedby="basic-addon1"
+                    name="hintAnswer" aria-describedby="basic-addon1" minlength='4' maxlength='20'
                     required [(ngModel)]="model.hintAnswer" #hintAnswer="ngModel">
                 </div>
                 <span class="text-danger" *ngIf="(hintAnswer.touched || registerationForm.submitted) &&
                 hintAnswer.errors?.required">Error : Hint Answer is required !</span>
+                <span class="text-danger" *ngIf="(hintAnswer.touched || registerationForm.submitted) &&
+                (hintAnswer.errors?.minlength)">Error : Hint Answer  must be at least 4 characters long. !</span>
               </div>
               <input type="submit" value="Register">
               <input type="reset" value="Cancel">

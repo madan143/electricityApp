@@ -1,11 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-body {
-  background:rgb(235, 234, 233);;
-  background-size: cover;
-  text-align: center;
-  font-family: Poppins-Bold;
-}
-
 .container{
   margin: auto;
 	width: 70%;
@@ -16,11 +8,20 @@ body {
   background: linear-gradient(45deg, #56ab2f, #a8e063);
 }
 
-.input-group>.input-group-prepend {
-  flex: 0 0 40%;
-}
-.input-group .input-group-text {
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
   width: 100%;
+}
+
+.input-group>.input-group-prepend {
+  flex: 0 0 50%;
+}
+
+.input-group-prepend {
+  margin-right: -1px;
 }
 
 .text-danger {
@@ -28,23 +29,24 @@ body {
   font-weight: 300;
 }
 
-.input-group-text {
-  font-weight: 600;
-}
-
-.w3l-main h3, .w3l-main-2 h3, .form h3{
-  padding: 0.5% 0%;
-  background: #fff;
-  color: #000;
-  font-size: 1 em;
+.w3l-main-3 h3 {
+  background: #000;
+  color: #fff;
+  font-size: 0.25 em;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
-.w3l-main-2 input[type="reset"], .w3l-main-2 input[type="submit"] {
+.secheading {
+  margin-top: 10px;
+  background: rgb(129, 127, 127);
+  color: #fff;
+  text-align: left;
+}
+
+.w3l-main-3 input[type="reset"], .w3l-main-3 input[type="submit"] {
   border-radius: 2px;
-  padding: 2% 2%;
+  padding: 1% 1%;
   border: none;
   outline: none;
   font-size: 1em;
@@ -61,7 +63,7 @@ body {
   -ms-transition: 0.5s all;
   font-family: Poppins-Bold;
 }
-.w3l-main-2 input[type="reset"]:hover, .w3l-main-2 input[type="submit"]:hover {
+.w3l-main-3 input[type="reset"]:hover, .w3l-main-3 input[type="submit"]:hover {
   background: #000;
   color: #fff;
 transition: 0.5s all;
@@ -71,18 +73,21 @@ transition: 0.5s all;
 }
 /*-- //Login-form --*/
 
-.w3l-main-2 form {
-  width: 60%;
-  margin: 4% auto;
+.w3l-main-3 form {
+  width: 100%;
+  margin: 2% auto;
+
 }
-.w3l-main-2 select,.w3l-main-2 input[type="text"],.w3l-main-2 input[type="number"], .w3l-main-2 input[type="password"], .w3l-main-2 input[type="email"] {
+
+.w3l-main-3 select,.w3l-main-3 input[type="text"],.w3l-main-3 input[type="number"], .w3l-main-3 input[type="password"], .w3l-main-2 input[type="email"] {
   border: none;
   outline: none;
   font-size: 1em;
   color: #000;
   font-family: Poppins-Bold;
+  width: 100%;
 }
-.w3l-main-2 input[type="submit"]{
+.w3l-main-3 input[type="submit"]{
 margin:7% 0em 1.4%;
 font-family: Poppins-Bold;
 }

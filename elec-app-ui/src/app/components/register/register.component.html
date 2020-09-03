@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container pt-3 my-3" >
 			<!-- Register-form -->
 			<div class="top-grids">
@@ -5,19 +6,28 @@
 				   <h3>Registration Form</h3>
              <form (ngSubmit)="registerationForm.valid && createNewUser(registerationForm)"
                     #registerationForm="ngForm">
+              <div *ngIf="model.statusCd && model.statusCd=='208'" class="alert alert-danger" role="alert">
+                    Email Id is already Registered!
+              </div>
+              <div *ngIf="model.statusCd && model.statusCd=='200'" class="alert alert-success" role="alert">
+                  Your registration is successfull. Please login to the application!
+              </div>
+              <div *ngIf="model.statusCd && model.statusCd=='500'" class="alert alert-danger" role="alert">
+                An unknown error occured. Please try again or contact the admin !
+              </div>
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">User Name*</span>
                   </div>
-                  <input type="text" class="form-control" aria-label="Username"  id="username"
-                    name="username" aria-describedby="basic-addon1" required  minlength="5"
-                    maxlength="20" [(ngModel)]="model.username" #username="ngModel">
+                  <input type="text" class="form-control" aria-label="Username"  id="userName"
+                    name="userName" aria-describedby="basic-addon1" required  minlength="5"
+                    maxlength="20" [(ngModel)]="model.userName" #userName="ngModel">
                 </div>
-                <span class="text-danger" *ngIf="(username.touched || registerationForm.submitted) &&
-                      username.errors?.required">Error : User Name is required !</span>
-                <span class="text-danger" *ngIf="(username.touched || registerationForm.submitted) &&
-                      username.errors?.minlength">Error : User Name  must be at least 5 characters long. !</span>
+                <span class="text-danger" *ngIf="(userName.touched || registerationForm.submitted) &&
+                      userName.errors?.required">Error : User Name is required !</span>
+                <span class="text-danger" *ngIf="(userName.touched || registerationForm.submitted) &&
+                      userName.errors?.minlength">Error : User Name  must be at least 5 characters long. !</span>
               </div>
               <div class="form-group">
                 <div class="input-group">

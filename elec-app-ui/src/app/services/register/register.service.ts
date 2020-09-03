@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from "src/app/model/user.model";
-import { environment } from "src/environments/environment";
-
+import { AppConstants } from 'src/app/constants/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +9,8 @@ import { environment } from "src/environments/environment";
 export class RegisterService {
 
   constructor(private http:HttpClient) { }
-  apiURL = environment.apiurl;
-  error = "";
 
   createNewUser(user : User){
-    this.http.post<User>(this.apiURL,user).subscribe(
-      responseData => {
-        console.log(responseData);
-      }, error => {
-        this.error = error.message;
-      }
-    );
+    return this.http.post(AppConstants.REGISTER_API_URL,user);
   }
-
 }

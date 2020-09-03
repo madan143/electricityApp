@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "src/app/model/user.model";
 import { NgForm } from '@angular/forms';
+import { LoginService } from 'src/app/services/login/login.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -8,18 +11,30 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  authStatus : string;
   model = new User();
 
-  constructor() { }
+  constructor(private loginService: LoginService,private router : Router) { }
 
   ngOnInit(): void {
 
   }
 
   validateUser(loginForm: NgForm){
-    console.log(loginForm);
-    console.log(this.model);
+      this.loginService.validateLoginDetails(this.model).subscribe(
+        responseData => {
+          if(responseData as any && (responseData as any).status){
+            this.model.statusCd = (responseData as any).status;
+          }else{
+            this.loginService.updateLogin('AUTH');
+            this.router.navigateByUrl('/header', { skipLocationChange: true });
+            this.router.navigate(['/inquiry']);
+          }
+        },error => {
+          this.model.statusCd = (error as any).status;
+        });
+
   }
+
 
 }

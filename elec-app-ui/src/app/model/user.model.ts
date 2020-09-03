@@ -1,7 +1,7 @@
 
 export class User{
 
-  public username: string;
+  public userName: string;
   public customerName: string;
   public mobileNumber: string;
   public email : string;
@@ -15,12 +15,15 @@ export class User{
   public issueCategory: string;
   public issueSubCategory: string;
   public uploadDoc: string|any;
+  public statusCd: string;
+  public statusMsg : string;
 
 
-  constructor(username?: string, customerName?: string, mobileNumber?: string, email?: string, confirmEmail?:string,
+  constructor(userName?: string, customerName?: string, mobileNumber?: string, email?: string, confirmEmail?:string,
       address?:string,password?:string,confirmPassword?:string,hintQuestion?:string,hintAnswer?:string,
-      uniqueServNum?:string,issueCategory?: string,issueSubCategory?: string,uploadDoc?: string|any){
-        this.username = username;
+      uniqueServNum?:string,issueCategory?: string,issueSubCategory?: string,uploadDoc?: string|any,
+      statusCd?:string,statusMsg?:string){
+        this.userName = userName;
         this.customerName = customerName;
         this.mobileNumber = mobileNumber;
         this.email = email;
@@ -34,6 +37,8 @@ export class User{
         this.issueCategory = issueCategory;
         this.issueSubCategory = issueSubCategory;
         this.uploadDoc = uploadDoc;
+        this.statusCd = statusCd;
+        this.statusMsg = statusMsg;
   }
 
 }

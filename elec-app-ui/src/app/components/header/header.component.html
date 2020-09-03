@@ -7,10 +7,11 @@
     </div>
     <nav class="hright dnav">
       <ul>
-        <li routerLinkActive="active"><a routerLink="/register">Register</a></li>
-        <li routerLinkActive="active"><a routerLink="/login">Login</a></li>
-        <li routerLinkActive="active"><a routerLink="/inquiry">Bill Inquiry</a></li>
-        <li routerLinkActive="active"><a routerLink="/complaint">Complaint Registration</a></li>
+        <li *ngIf="authState!='AUTH'" routerLinkActive="active"><a routerLink="/register">Register</a></li>
+        <li *ngIf="authState!='AUTH'" routerLinkActive="active"><a routerLink="/login">Login</a></li>
+        <li *ngIf="authState=='AUTH'" routerLinkActive="active"><a routerLink="/inquiry">Bill Inquiry</a></li>
+        <li *ngIf="authState=='AUTH'" routerLinkActive="active"><a routerLink="/complaint">Complaint Registration</a></li>
+        <li *ngIf="authState=='AUTH'" routerLinkActive="active"><a routerLink="/logout">Logout</a></li>
       </ul>
     </nav>
   </div>

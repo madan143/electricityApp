@@ -6,20 +6,23 @@
        <h3>Complaint Registration</h3>
          <form (ngSubmit)="complaintForm.valid && submitNewComplaint(complaintForm)"
                 #complaintForm="ngForm">
+          <div *ngIf="model.statusCd && model.statusCd=='200'" class="alert alert-success"
+                role="alert">Your complaint details saved successfully!
+          </div>
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Unique Service Number*</span>
               </div>
               <input type="text" class="form-control" aria-label="UniqueServNum"  id="uniqueServNum"
-                name="uniqueServNum" aria-describedby="basic-addon1" required  minlength="8"
-                maxlength="8" [(ngModel)]="model.uniqueServNum" #uniqueServNum="ngModel">
+                name="uniqueServNum" aria-describedby="basic-addon1" required  minlength="9"
+                maxlength="9" [(ngModel)]="model.uniqueServNum" #uniqueServNum="ngModel">
             </div>
             <span class="text-danger" *ngIf="(uniqueServNum.touched || complaintForm.submitted) &&
             uniqueServNum.errors?.required">Error : Unique Service Number is required !</span>
             <span class="text-danger" *ngIf="(uniqueServNum.touched || complaintForm.submitted) &&
             (uniqueServNum.errors?.minlength || uniqueServNum.errors?.maxlength)">
-              Error : Unique Service Number  must be 8 digit number. !</span>
+              Error : Unique Service Number  must be 9 digit number. !</span>
           </div>
           <div class="form-group">
             <div class="input-group">
@@ -58,14 +61,14 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Name of the Complainer*</span>
               </div>
-              <input type="text" class="form-control" aria-label="CustomerName"  id="customerName"
-                name="customerName" aria-describedby="basic-addon1" minlength="4" maxlength="30"
-                required [(ngModel)]="model.customerName" #customerName="ngModel">
+              <input type="text" class="form-control" aria-label="NameOfComplainer"  id="nameOfComplainer"
+                name="nameOfComplainer" aria-describedby="basic-addon1" minlength="4" maxlength="30"
+                required [(ngModel)]="model.nameOfComplainer" #nameOfComplainer="ngModel">
             </div>
-            <span class="text-danger" *ngIf="(customerName.touched || complaintForm.submitted) &&
-                  customerName.errors?.required">Error : Complainer Name is required !</span>
-            <span class="text-danger" *ngIf="(customerName.touched || complaintForm.submitted) &&
-            customerName.errors?.minlength">Error : Complainer Name  must be at least 4 characters long. !</span>
+            <span class="text-danger" *ngIf="(nameOfComplainer.touched || complaintForm.submitted) &&
+            nameOfComplainer.errors?.required">Error : Complainer Name is required !</span>
+            <span class="text-danger" *ngIf="(nameOfComplainer.touched || complaintForm.submitted) &&
+            nameOfComplainer.errors?.minlength">Error : Complainer Name  must be at least 4 characters long. !</span>
           </div>
           <div class="form-group">
             <div class="input-group">
@@ -105,7 +108,7 @@
               </div>
               <input type="file" class="form-control" aria-label="UploadDoc"  id="uploadDoc"
                 name="uploadDoc" aria-describedby="basic-addon1" required accept="image/gif, image/jpeg"
-                [(ngModel)]="model.uploadDoc" #uploadDoc="ngModel">
+                [(ngModel)]="model.uploadDoc" #uploadDoc="ngModel" (change)="handleFileInput($event.target.files)">
             </div>
             <span class="text-danger" *ngIf="(complaintForm.submitted) &&
             uploadDoc.errors?.required">Error : Upload Doc is required !</span>

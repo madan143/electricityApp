@@ -1,5 +1,5 @@
 
-export class Bill{
+export class BillDetails{
 
   public consumerName: string;
   public uniqueServNum: string;
@@ -14,11 +14,14 @@ export class Bill{
   public totalAmt : string;
   public lastMnthBillDt : Date;
   public lastMnthBillAmt : string;
+  public statusCd: string;
+  public statusMsg : string;
+
 
   constructor(consumerName?: string, uniqueServNum?: string, serviceNumber?: string,
       eroName?: string, address?:string,currentMnthBillDt?:Date,currentMnthBillAmt?:string,
       arrearMnthBillDt?:Date,arrearMnthBillAmt?:string,dueDt?:Date,totalAmt?:string,
-      lastMnthBillDt?:Date,lastMnthBillAmt?:string){
+      lastMnthBillDt?:Date,lastMnthBillAmt?:string,statusCd?:string,statusMsg?:string){
         this.consumerName = consumerName;
         this.uniqueServNum = uniqueServNum;
         this.serviceNumber = serviceNumber;
@@ -32,6 +35,8 @@ export class Bill{
         this.totalAmt = totalAmt;
         this.lastMnthBillDt = lastMnthBillDt;
         this.lastMnthBillAmt = lastMnthBillAmt;
+        this.statusCd = statusCd;
+        this.statusMsg = statusMsg;
   }
 
 }

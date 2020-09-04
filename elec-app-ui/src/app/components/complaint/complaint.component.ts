@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from "src/app/model/user.model";
+import { ComplaintService } from 'src/app/services/complaint/complaint.service';
+import { Complaint } from 'src/app/model/complaint.model';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -8,16 +9,30 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./complaint.component.css']
 })
 export class ComplaintComponent implements OnInit {
-
-  model = new User();
-  constructor() { }
+  reader = new FileReader();
+  model = new Complaint();
+  constructor(private complaintService:ComplaintService) { }
 
   ngOnInit(): void {
   }
 
   submitNewComplaint(registerationForm: NgForm){
-    console.log(registerationForm);
-    console.log(this.model);
+    this.complaintService.createComplaint(this.model).subscribe(
+      responseData => {
+        registerationForm.resetForm();
+        this.model.statusCd = '200';
+
+      },error => {
+        this.model.statusCd = '500';
+      });
   }
+
+  handleFileInput(files: FileList) {
+    const file = files.item(0);
+    this.reader.onload = () => {
+      this.reader.readAsArrayBuffer(file);
+    };
+
+}
 
 }

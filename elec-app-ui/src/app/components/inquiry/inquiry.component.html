@@ -7,26 +7,29 @@
          <form (ngSubmit)="onlineBillForm.valid && loadBillDetails(onlineBillForm)"
                 #onlineBillForm="ngForm">
           <div class="form-group">
+            <div *ngIf="model.statusCd && model.statusCd=='404'" class="alert alert-danger"
+                role="alert">Invalid Unique Service number. Please enter valid number !
+            </div>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Unique Service Number*</span>
               </div>
               <input type="text" class="form-control" aria-label="UniqueServNum"  id="uniqueServNum"
-                name="uniqueServNum" aria-describedby="basic-addon1" required  minlength="8"
-                maxlength="8" [(ngModel)]="model.uniqueServNum" #uniqueServNum="ngModel">
+                name="uniqueServNum" aria-describedby="basic-addon1" required  minlength="9"
+                maxlength="9" [(ngModel)]="model.uniqueServNum" #uniqueServNum="ngModel">
             </div>
             <span class="text-danger" *ngIf="(uniqueServNum.touched || onlineBillForm.submitted) &&
             uniqueServNum.errors?.required">Error : Unique Service Number is required !</span>
             <span class="text-danger" *ngIf="(uniqueServNum.touched || onlineBillForm.submitted) &&
             (uniqueServNum.errors?.minlength || uniqueServNum.errors?.maxlength)">
-              Error : Unique Service Number  must be 8 digit number. !</span>
+              Error : Unique Service Number  must be 9 digit number. !</span>
           </div>
           <input type="submit" value="Submit">
           <input type="reset" value="Cancel">
         </form>
     </div>
   <!-- //Bill Inquiry form -->
-  <div class="container-sm pt-3 my-3" >
+  <div class="container-sm pt-3 my-3" *ngIf="model.consumerName">
     <!-- Bill Inquiry form -->
     <div class="top-grids">
       <div class="w3l-main-3">

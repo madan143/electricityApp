@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BillDetails } from "src/app/model/bill.model";
 import { NgForm } from '@angular/forms';
 import { InquiryService } from 'src/app/services/inquiry/inquiry.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-inquiry',
@@ -11,15 +13,23 @@ import { InquiryService } from 'src/app/services/inquiry/inquiry.service';
 export class InquiryComponent implements OnInit {
 
   model = new BillDetails();
-  constructor(private inquiryService : InquiryService) { }
+  statusMsg : string;
+
+  constructor(private inquiryService : InquiryService,
+    private storageService: StorageService,
+    private router : Router) {
+      this.statusMsg = storageService.statusMsg;
+    }
 
   ngOnInit(): void {
   }
 
   loadBillDetails(onlineBillForm: NgForm){
+    this.statusMsg = "";
+    this.storageService.resetStatusMsg();
     this.model.statusCd = '';
     let uniqueSerNum = this.model.uniqueServNum;
-    this.inquiryService.getBillDetails(this.model).subscribe(
+    this.inquiryService.getBillDetails(uniqueSerNum).subscribe(
       responseData => {
         if(responseData as any && (responseData as any).status){
           this.model.statusCd = (responseData as any).status;
@@ -27,7 +37,8 @@ export class InquiryComponent implements OnInit {
           if(responseData){
             console.log(responseData);
             this.model = responseData as BillDetails;
-            console.log(this.model);
+            this.storageService.updatePaymentAmt(this.model.totalAmt);
+            this.storageService.updateUniqueSerNum(this.model.uniqueServNum);
           }
         }
       },error => {
@@ -35,6 +46,10 @@ export class InquiryComponent implements OnInit {
         this.model.uniqueServNum = uniqueSerNum;
         this.model.statusCd = '404';
       });
+  }
+
+  navigateToPayment(){
+    this.router.navigate(['/payment']);
   }
 
 }

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 
 export class BillDetails{
 
@@ -6,7 +7,7 @@ export class BillDetails{
   public serviceNumber: string;
   public eroName: string;
   public address : string;
-  public currentMnthBillDt : Date;
+  public currentMnthBillDt : DatePipe;
   public currentMnthBillAmt : string;
   public arrearMnthBillDt : Date;
   public arrearMnthBillAmt : string;
@@ -19,7 +20,7 @@ export class BillDetails{
 
 
   constructor(consumerName?: string, uniqueServNum?: string, serviceNumber?: string,
-      eroName?: string, address?:string,currentMnthBillDt?:Date,currentMnthBillAmt?:string,
+      eroName?: string, address?:string,currentMnthBillDt?:DatePipe,currentMnthBillAmt?:string,
       arrearMnthBillDt?:Date,arrearMnthBillAmt?:string,dueDt?:Date,totalAmt?:string,
       lastMnthBillDt?:Date,lastMnthBillAmt?:string,statusCd?:string,statusMsg?:string){
         this.consumerName = consumerName;
@@ -29,8 +30,8 @@ export class BillDetails{
         this.address = address;
         this.currentMnthBillDt = currentMnthBillDt;
         this.currentMnthBillAmt = currentMnthBillAmt;
-        this.arrearMnthBillDt = currentMnthBillDt;
-        this.arrearMnthBillAmt = currentMnthBillAmt;
+        this.arrearMnthBillDt = arrearMnthBillDt;
+        this.arrearMnthBillAmt = arrearMnthBillAmt;
         this.dueDt = dueDt;
         this.totalAmt = totalAmt;
         this.lastMnthBillDt = lastMnthBillDt;

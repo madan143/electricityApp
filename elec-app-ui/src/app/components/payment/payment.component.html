@@ -1,1 +1,113 @@
 <app-header></app-header>
+<div class="container pt-3 my-3" >
+  <!-- Payment-form -->
+  <div class="top-grids">
+    <div class="w3l-main-2">
+       <h3>Payment</h3>
+         <form (ngSubmit)="paymentForm.valid && makePayment(paymentForm)"
+                #paymentForm="ngForm">
+          <div *ngIf="model.statusCd" class="alert alert-danger"
+                role="alert">Invalid Card details entered !
+          </div>
+          <div class="form-group">
+          <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Payment By</span>
+              </div>
+              &nbsp;&nbsp;
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="paymentType" id="paymentType1" value="Credit Card"
+                [(ngModel)]="model.paymentType" #paymentType="ngModel">
+                <label class="form-check-label" for="paymentType1">Credit Card</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="paymentType" id="paymentType2" value="Debit Card"
+                 [(ngModel)]="model.paymentType" #paymentType="ngModel">
+                <label class="form-check-label" for="paymentType2">Debit Card</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="paymentType" id="paymentType3" value="Paypal"
+                [(ngModel)]="model.paymentType" #paymentType="ngModel">
+                <label class="form-check-label" for="paymentType3">Paypal</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Amount</span>
+              </div>
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">{{paymentAmt}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Name on Card*</span>
+              </div>
+              <input type="text" class="form-control" aria-label="NameOnCard"  id="nameOnCard"
+                name="nameOnCard" aria-describedby="basic-addon1" minlength="4" maxlength="40"
+                required [(ngModel)]="model.nameOnCard" #nameOnCard="ngModel">
+            </div>
+            <span class="text-danger" *ngIf="(nameOnCard.touched || paymentForm.submitted) &&
+                nameOnCard.errors?.required">Error : Name on Card is required !</span>
+            <span class="text-danger" *ngIf="(nameOnCard.touched || paymentForm.submitted) &&
+                nameOnCard.errors?.minlength">Error : Name on Card  must be at least 4 characters long. !</span>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Credit Card Number*</span>
+              </div>
+              <input type="text" class="form-control" aria-label="CreditCardNum"  id="creditCardNum"
+                name="creditCardNum" aria-describedby="basic-addon1" minlength="16" maxlength="16"
+                pattern="^[0-9]+$" required [(ngModel)]="model.creditCardNum" #creditCardNum="ngModel">
+            </div>
+            <span class="text-danger" *ngIf="(creditCardNum.touched || paymentForm.submitted) &&
+            creditCardNum.errors?.required">Error : Credit Card Number is required !</span>
+            <span class="text-danger" *ngIf="(creditCardNum.touched || paymentForm.submitted) &&
+              creditCardNum.errors?.pattern">Error : Credit Card number must be numeric !</span>
+            <span class="text-danger" *ngIf="(creditCardNum.touched || paymentForm.submitted) &&
+            !creditCardNum.errors?.pattern && creditCardNum.errors?.minlength">Error : Credit Card Number must be 16 digit long. !</span>
+          </div>
+          <div class="form-group">
+          <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Expiration*</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Expiration"  id="expiration"
+                name="expiration" aria-describedby="basic-addon1" minlength="5" maxlength="5"
+                required [(ngModel)]="model.expiration" #expiration="ngModel" placeholder="MM/YY">
+            </div>
+            <span class="text-danger" *ngIf="(expiration.touched || paymentForm.submitted) &&
+            expiration.errors?.required">Error : Expiration is required !</span>
+            <span class="text-danger" *ngIf="(expiration.touched || paymentForm.submitted) &&
+            (expiration.errors?.minlength || expiration.errors?.maxlength)">Error : Expiration must be 5 characters long. !</span>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">CVV*</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Cvv"  id="cvv"
+                  name="cvv" aria-describedby="basic-addon1" minlength="3" maxlength="3"
+                  pattern="^[0-9]+$" required [(ngModel)]="model.cvv" #cvv="ngModel">
+              </div>
+              <span class="text-danger" *ngIf="(cvv.touched || paymentForm.submitted) &&
+              cvv.errors?.required">Error : CVV is required !</span>
+              <span class="text-danger" *ngIf="(cvv.touched || paymentForm.submitted) &&
+              cvv.errors?.pattern">Error : CVV must be numeric !</span>
+              <span class="text-danger" *ngIf="(cvv.touched || paymentForm.submitted) && !cvv.errors?.pattern &&
+              (cvv.errors?.minlength || cvv.errors?.maxlength)">Error : CVV must be 3 digit long. !</span>
+            </div>
+          <input type="submit" value="Pay">
+          <input type="reset" value="Cancel">
+        </form>
+    </div>
+  <div class="clear"></div>
+  <!-- //Payment-form -->
+</div>
+
+

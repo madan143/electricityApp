@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ComplaintComponent } from './components/complaint/complaint.component';
 import { InquiryComponent } from './components/inquiry/inquiry.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'complaint', component: ComplaintComponent},
   { path: 'inquiry', component: InquiryComponent},
-  { path: 'logout', component: LogoutComponent}
+  { path: 'logout', component: LogoutComponent},
+  { path: 'payment', component: PaymentComponent}
 ];
 
 @NgModule({

@@ -10,6 +10,9 @@
             <div *ngIf="model.statusCd && model.statusCd=='404'" class="alert alert-danger"
                 role="alert">Invalid Unique Service number. Please enter valid number !
             </div>
+            <div *ngIf="statusMsg" class="alert alert-success"
+                role="alert">Payment is successful !
+            </div>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Unique Service Number*</span>
@@ -34,7 +37,7 @@
     <div class="top-grids">
       <div class="w3l-main-3">
          <h3>Current Month Bill Details</h3>
-           <form (ngSubmit)="onlineBillForm.valid && loadBillDetails(onlineBillForm)"
+           <form (ngSubmit)="navigateToPayment()"
                   #onlineBillForm="ngForm">
                   <div class="form-row align-items-center">
                     <div class="col-auto my-1 input-group">

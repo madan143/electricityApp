@@ -76,7 +76,7 @@ transition: 0.5s all;
   width: 60%;
   margin: 4% auto;
 }
-.w3l-main-2 select,.w3l-main-2 input[type="text"],.w3l-main-2 input[type="number"], .w3l-main-2 input[type="password"], .w3l-main-2 input[type="email"] {
+.w3l-main-2 select,.w3l-main-2 input[type="text"],.w3l-main-2 select,.w3l-main-2 input[type="radio"],.w3l-main-2 input[type="number"], .w3l-main-2 input[type="password"], .w3l-main-2 input[type="email"] {
   border: none;
   outline: none;
   font-size: 1em;

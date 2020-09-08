@@ -15,7 +15,7 @@ export class LoginService {
   constructor(private http:HttpClient) {
     this.authVisibilityChange.subscribe((value) => {
       this.authStatus = value;
-  });
+    });
   }
 
   validateLoginDetails(user : User){

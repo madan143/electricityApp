@@ -50,12 +50,14 @@
                   </div>
                   <input type="text" class="form-control" aria-label="MobileNumber"  id="mobileNumber"
                     name="mobileNumber" aria-describedby="basic-addon1" minlength='10' maxlength='10'
-                    required [(ngModel)]="model.mobileNumber" #mobileNumber="ngModel">
+                    pattern="^[0-9]+$" required [(ngModel)]="model.mobileNumber" #mobileNumber="ngModel">
                 </div>
                 <span class="text-danger" *ngIf="(mobileNumber.touched || registerationForm.submitted) &&
                     mobileNumber.errors?.required">Error : Mobile Number is required !</span>
                 <span class="text-danger" *ngIf="(mobileNumber.touched || registerationForm.submitted) &&
-                (mobileNumber.errors?.minlength || mobileNumber.errors?.maxlength)">
+                    mobileNumber.errors?.pattern">Error : Mobile Number must be numeric !</span>
+                <span class="text-danger" *ngIf="(mobileNumber.touched || registerationForm.submitted) &&
+                (!mobileNumber.errors?.pattern && (mobileNumber.errors?.minlength || mobileNumber.errors?.maxlength))">
                   Error : Mobile Number  must be 10 digit number. !</span>
               </div>
               <div class="form-group">
